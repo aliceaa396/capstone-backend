@@ -3,7 +3,7 @@ const fitpadrouter = express.Router()
 const jsonbodyparser = express.json()
 const FitpadServices = require('./fitpad-services')
 
-fitpadrouter.post('/',jsonbodyparser, (req,res) =>{
+fitpadrouter.post('/',jsonbodyparser, (req,res,next) =>{
   console.log (req.body)
   let workout = {
     exercise_name: req.body.exercise_name,
@@ -12,13 +12,15 @@ fitpadrouter.post('/',jsonbodyparser, (req,res) =>{
     user_id: 1, 
     notes: req.body.notes
   }
-  FitpadServices.insertWorkout(req.app.get('db'), workout)
+  let newWorkout = {exercise_name,workout_set,workout_weight,notes}
+
+  FitpadServices.insertWorkout(req.app.get('db'), newWorkout)
   .then(workout => {
     res
       .status(201)
-      .json({workout})
+      .json(serializeWorkou(workout))
   })
-  .catch()
+  .catch(next)
 })
 
 module.exports = fitpadrouter

@@ -7,6 +7,8 @@ const { NODE_ENV } = require('./config');
 const app = express();
 const userRouter = require('./Users/users-router');
 const fitpadrouter = require('./FitPad/fitpad-router');
+// const  userService = require('./user-service')
+
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
