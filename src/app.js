@@ -16,6 +16,8 @@ app.use(helmet())
 app.use(cors())
 app.use('/api/users',userRouter)
 app.use('/api/fitpad-data', fitpadrouter)
+
+
 app.get('/', (req, res)=> {
   res.send('Hello boilerplate!')
 })
