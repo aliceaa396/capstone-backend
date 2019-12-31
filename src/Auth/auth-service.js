@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config');
 
 const AuthService = {
-  getUsersWithEmail(db, user_email) {
+  getUserWithUserEmail(db, user_email) {
     return db('fitpad_users')
       .where({user_email})
       .first();
@@ -22,5 +22,12 @@ const AuthService = {
       algorithms:['HS256'],
     })
   },
-  
-}
+  parseBasicToken(token) {
+    return Buffer
+      .from(token, 'base64')
+      .toString()
+      .split(":");
+  }
+};
+
+module.exports = AuthService;
