@@ -1,9 +1,10 @@
-const express = require ('express')
+const express = require ('express');
 const fitpadrouter = express.Router()
 const jsonbodyparser = express.json()
-const FitpadServices = require('./fitpad-services')
+const FitpadServices = require('./fitpad-services');
+const requireAuth = require('../Middleware/jwt-auth');
 
-fitpadrouter.post('/',jsonbodyparser, (req,res,next) =>{
+fitpadrouter.post('/',jsonbodyparser,requireAuth, (req,res,next) => {
   console.log (req.body)
   let workout = {
     exercise_name: req.body.exercise_name,
@@ -12,7 +13,7 @@ fitpadrouter.post('/',jsonbodyparser, (req,res,next) =>{
     user_id: 1, 
     notes: req.body.notes
   }
-  let newWorkout = {exercise_name,workout_set,workout_weight,notes}
+  let newWorkout = {user_id,exercise_name,workout_set,workout_weight,notes}
 
   FitpadServices.insertWorkout(req.app.get('db'), newWorkout)
   .then(workout => {
