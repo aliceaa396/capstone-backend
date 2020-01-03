@@ -13,16 +13,13 @@ const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
 
-app.use(morgan(morganOption))
-app.use(helmet())
-app.use(cors())
-app.use('/api/users',userRouter)
-app.use('/api/fitpad-data', fitpadrouter)
-app.use('/api/auth', authRouter)
+app.use(morgan(morganOption));
+app.use(helmet());
+app.use(cors());
+app.use('/api/users',userRouter);
+app.use('/api/fitpad-data', fitpadrouter);
+app.use('/api/auth', authRouter);
 
-app.get('/', (req, res)=> {
-  res.send('Hello boilerplate!')
-})
 
 app.use(function errorHandler(error, req, res, next) {
   let response

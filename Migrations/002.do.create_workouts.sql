@@ -8,4 +8,4 @@ CREATE TABLE workouts
   workout_weight INTEGER NOT NULL,
   user_id INTEGER REFERENCES fitpad_users(id) ON DELETE CASCADE NOT NULL,
   notes TEXT
-);
+)
