@@ -6,7 +6,7 @@ const helpers = require("./test-helpers");
 describe("Users Endpoints", function() {
   let db;
 
-  const { testUsers } = helpers.makeUsersArray();
+  const testUsers  = helpers.makeUsersArray();
   const testUser = testUsers[0];
 
   before("make knex instance", () => {
@@ -27,16 +27,14 @@ describe("Users Endpoints", function() {
       beforeEach("insert users", () => helpers.seedUsers(db, testUsers));
 
       const requiredFields = [
-        "first_name",
-        "last_name",
+        "full_name",
         "user_name",
         "user_email",
         "password"
       ];
       requiredFields.forEach(field => {
         const registerAttemptBody = {
-          first_name: "test first_name",
-          last_name: "test last_name",
+          full_name: "test full name",
           user_name: "test user_name",
           user_email: "test user_email",
           password: "test password"
@@ -53,8 +51,7 @@ describe("Users Endpoints", function() {
         });
         it(`responds 400 'Password must be longer than 8 characters' when empty password`, () => {
           const userShortPassword = {
-            first_name: "test first_name",
-            last_name: "test last_name",
+            full_name: "test full name",
             user_name: "test user_name",
             user_email: "useremail@aol.com",
             password: "Abcdefg1!"
@@ -68,8 +65,7 @@ describe("Users Endpoints", function() {
         });
         it(`responds 400 'Password must be less than 72 characters long' when long password`, ()=> {
           const userLongPassword = {
-            first_name: "test first_name",
-            last_name: "test last_name",
+            full_name: "test full name",
             user_name: "test user_name",
             user_email: "useremail@aol.com",
             password: "*".repeat(73)
@@ -83,8 +79,7 @@ describe("Users Endpoints", function() {
         });
         it(`responds 400 error when password starts with spaces`, () => {
           const userPasswordStartsSpaces = {
-            first_name: "test first_name",
-            last_name: "test last_name",
+            full_name: "test full name",
             user_name: "test user_name",
             user_email: "useremail@aol.com",
             password: " Abcedfg1!"
@@ -98,8 +93,7 @@ describe("Users Endpoints", function() {
         });
         it(`responds 400 error when password ends with spaces`, () => {
           const userPasswordEndsSpaces = {
-            first_name: "test first_name",
-            last_name: "test last_name",
+            full_name: "test full name",
             user_name: "test user_name",
             user_email: "useremail@aol.com",
             password: "Abcedfg1! "
@@ -113,8 +107,7 @@ describe("Users Endpoints", function() {
         });
         it(`responds 400 error when password isnt complex enough`, () => {
           const  userPasswordNotComplex = {
-            first_name: "test first_name",
-            last_name: "test last_name",
+            full_name: "test full name",
             user_name: "test user_name",
             user_email: "useremail@aol.com",
             password: "abcdefg1"
@@ -128,8 +121,7 @@ describe("Users Endpoints", function() {
         });
         it (`responds 400 'User name already taken' when user_name isnt unique`, () => {
           const duplicateUser = {
-            first_name: "test first_name",
-            last_name: "test last_name",
+            full_name: "test full name",
             user_name: test.user_name,
             user_email: "useremail@aol.com",
             password: "Abcedfg1!"
@@ -146,8 +138,7 @@ describe("Users Endpoints", function() {
       context(`Happy path`, () => {
         it(`responds 201, serialized user, storing bcryped password`, () => {
           const newUser = {
-            first_name: "test first_name",
-            last_name: "test last_name",
+            full_name: "test full name",
             user_name: test.user_name,
             user_email: "useremail@aol.com",
             password: "Abcedfg1!"
@@ -158,8 +149,7 @@ describe("Users Endpoints", function() {
             .expect(201)
             .expect(res => {
               expect(res.body).to.have.property('id');
-              expect(res.body.first_name).to.eql(newUser.first_name);
-              expect(res.body.last_name).to.eql(newUser.last_name);
+              expect(res.body.full_name).to.eql(newUser.full_name);
               expect(res.body.user_name).to.eql(newUser.user_name);
               expect(res.body.user_email).to.eql(newUser.user_email);
               expect(res.body).to.not.have.property('password');
@@ -175,8 +165,7 @@ describe("Users Endpoints", function() {
                 .where({id : res.body.id})
                 .first()
                 .then(row => {
-                  expect(row.first_name).to.eql(newUser.first_name);
-                  expect(row.last_name).to.eql(newUser.last_name);
+                  expect(row.full_name).to.eql(newUser.full_name);
                   expect(row.user_name).to.eql(newUser.user_name);
                   expect(row.user_email).to.eql(newUser.user_email);
                   const expectedDate = new Date().toLocaleString('en', {timeZone: 'UTC'});

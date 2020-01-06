@@ -14,7 +14,7 @@ const AuthService = {
   createJwt(subject, payload) {
     return jwt.sign(payload, config.JWT_SECRET, {
       subject,
-      algorithm: 'HS256',
+      algorithm: 'HS256'
     })
   },
   verifyJwt(token) {

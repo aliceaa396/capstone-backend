@@ -6,8 +6,8 @@ const helpers = require('./test-helpers');
 describe('Auth Endpoints', function(){
   let db;
   
-  const {testUsers}= helpers.makeUsersArray();
-  const testUsers = testUsers[0];
+  const testUsers= helpers.makeUsersArray();
+  const testUser = testUsers[0];
 
   before('make knex instance', ()=>{
     db = knex({
@@ -16,11 +16,11 @@ describe('Auth Endpoints', function(){
     });
     app.set('db', db)
   });
-  after('disconnect from db', () => db.destroy())
+  after('disconnect from db', () => db.destroy());
 
-  before('cleanup', () => helpers.cleanTables(db))
+  before('cleanup', () => helpers.cleanTables(db));
 
-  afterEach('cleanup', () => helpers.cleanTables(db))
+  afterEach('cleanup', () => helpers.cleanTables(db));
 
   describe('POST/api/auth/login', ()=> {
     beforeEach('insert users', ()=> helpers.seedUsers(db, testUsers,))

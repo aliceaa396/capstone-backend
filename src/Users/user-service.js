@@ -3,7 +3,7 @@ const xss = require('xss');
 const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/;
 
 const  userService = { 
-  hasUserWirhUserName(db, user_name) {
+  hasUserWithUserName(db, user_name) {
     return db('fitpad_users')
       .where({user_name})
       .first()
@@ -17,6 +17,9 @@ const  userService = {
       .then(([user]) => user);
   },
   validatePassword(password) {
+    if(password.startsWith(" ") || password.endsWith(" ")) {
+      return 'Password must start with empty spaces or end with empty spaces'
+    }
     if (password.length < 8) {
       return 'Password must be longer than 8 characters'
     }
@@ -31,14 +34,38 @@ const  userService = {
   hashPassword(password) {
     return bcrypt.hash(password, 12)
   },
+  getAllUsers(db) {
+    return db
+      .from('fitpad_users').select('*');
+  },
+  getById(db, id){
+    return db 
+      .from('fitpad_users')
+      .select('*')
+      .where({id})
+      .first();
+  },
+  deleteUser(db, id) {
+    return db
+      .from('fitpad_users')
+      .select("*")
+      .where({id})
+      .delete()
+  },
   serializeUser(user) {
     return {
       id: user.id,
-      first_name: xss(user.first_name),
+      full_name: xss(user.full_name),
       user_name: xss(user.user_name),
       user_email: xss(user.user_email),
       date_created: new Date(user.date_created)
     };
+  },
+  updateUser(db,id,newUserFields) {
+    return db
+      .from('fitpad_users')
+      .where({id})
+      .update(newUserFields);
   }
 };
 

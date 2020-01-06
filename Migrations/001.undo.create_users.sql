@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS fitpad_users;
+DROP TABLE IF EXISTS users;

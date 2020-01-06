@@ -5,8 +5,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const app = express();
-const userRouter = require('./Users/users-router');
-const fitpadrouter = require('./FitPad/fitpad-router');
+const usersRouter = require('./Users/users-router');
+const fitpadRouter = require('./FitPad/fitpad-router');
 const authRouter = require('./Auth/auth-router');
 
 const morganOption = (NODE_ENV === 'production')
@@ -16,8 +16,8 @@ const morganOption = (NODE_ENV === 'production')
 app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
-app.use('/api/users',userRouter);
-app.use('/api/fitpad-data', fitpadrouter);
+app.use('/api/users',usersRouter);
+app.use('/api/fitpad-data', fitpadRouter);
 app.use('/api/auth', authRouter);
 
 
