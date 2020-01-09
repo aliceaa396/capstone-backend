@@ -17,7 +17,7 @@ app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 app.use('/api/users',usersRouter);
-app.use('/api/fitpad-data', fitpadRouter);
+app.use('/api/fitpadData', fitpadRouter);
 app.use('/api/auth', authRouter);
 
 

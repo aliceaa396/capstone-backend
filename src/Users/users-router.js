@@ -7,7 +7,7 @@ const path = require('path');
 
 usersRouter
   .route('/')
-  .get((req,res, next) => {
+  .get((req,res,next) => {
     UsersService.getAllUsers(req.app.get('db'))
       .then(users => {
         res.json(users.map(UsersService.serializeUser));
@@ -16,7 +16,7 @@ usersRouter
   })
   .post(jsonBodyParser, (req, res, next)=> {
     const {full_name,user_name,user_email,password} = req.body;
-
+    const newUser = {full_name,user_name,user_email,password}
     for (const[key, value] of Object.entries(newUser)) {
       if(!value) {
         return res.status(400).json({
@@ -29,7 +29,7 @@ usersRouter
     if (passwordError){
       return res.status(400).json({error: passwordError});
     }
-
+    // console.log(req.app.get('db'))
     UsersService.hasUserWithUserName(req.app.get('db'),user_name)
       .then(hasUserWithUserName => {
         if (hasUserWithUserName)
@@ -44,7 +44,7 @@ usersRouter
               password: hashedPassword,
               date_created: 'now()'
             };
-
+            console.log('part two here i am')
             return UsersService.insertUser(req.app.get('db'),newUser)
               .then (user => {
                 res
