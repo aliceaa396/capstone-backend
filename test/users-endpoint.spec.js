@@ -160,7 +160,7 @@ describe("Users Endpoints", function() {
             })
             .expect(res => 
               db
-                .from('fitpad_users')
+                .from('users')
                 .select('*')
                 .where({id : res.body.id})
                 .first()

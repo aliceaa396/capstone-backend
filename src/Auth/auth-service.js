@@ -4,7 +4,7 @@ const config = require('../config');
 
 const AuthService = {
   getUserWithUserEmail(db, user_email) {
-    return db('fitpad_users')
+    return db('users')
       .where({user_email})
       .first();
   },

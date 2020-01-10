@@ -1,12 +1,12 @@
 BEGIN;
 
 TRUNCATE 
-  fitpad_users,
+  users,
   workouts
   RESTART IDENTITY CASCADE;
 
-INSERT INTO fitpad_users
-  (full_name, user_name, user_email, password)
+INSERT INTO users
+  (full_name,user_name,user_email,password)
 VALUES
   ('Angel Alicea','ala31996','angelalicea0@gmail.com','$2a$12$lHK6LVpc15/ZROZcKU00QeiD.RyYq5dVlV/9m4kKYbGibkRc5l4Ne'),
   ('Pearly Person','pp12345','pearlyperson@gmail.com','$2a$12$lHK6LVpc15/ZROZcKU00QeiD.RyYq5dVlV/9m4kKYbGibkRc5l4Ne'),
@@ -14,7 +14,7 @@ VALUES
 
 
 INSERT INTO workouts 
-(exercise_name,workout_set, workout_rep, workout_weight, notes )
+(user_id,exercise_name,workout_set, workout_rep,workout_weight,notes)
 
 VALUES 
 (

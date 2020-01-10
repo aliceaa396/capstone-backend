@@ -61,9 +61,9 @@ function makeWorkoutsArray(users) {
 function cleanTables (db) {
   return db.transaction(trx => 
     trx
-      .raw(`TRUNCATE fitpad_users`)
+      .raw(`TRUNCATE users`)
       .then(()=> 
-        Promise.all([trx.raw(`SELECT setval('fitpad_users_id_seq`, 1)])
+        Promise.all([trx.raw(`SELECT setval('users_id_seq`, 1)])
       ) 
   )
 }
@@ -73,10 +73,10 @@ function seedUsers(db, users) {
     password: bcrypt.hashSync(user.password, 1)
   }));
   return db
-    .into('fitpad_users')
+    .into('users')
     .insert(preppedUsers)
     .then(() => 
-      db.raw(`SELECT setval('fitpad_users_id_seq',?)`,[
+      db.raw(`SELECT setval('users_id_seq',?)`,[
         users[users.length -1].id
       ])
     );

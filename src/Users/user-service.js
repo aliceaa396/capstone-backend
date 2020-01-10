@@ -4,7 +4,7 @@ const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*
 
 const  userService = { 
   hasUserWithUserName(db, user_name) {
-    return db('fitpad_users')
+    return db('users')
       .where({user_name})
       .first()
       .then(user => !!user);
@@ -12,7 +12,7 @@ const  userService = {
   insertUser(db, newUser) {
     return db
       .insert(newUser)
-      .into('fitpad_users')
+      .into('users')
       .returning('*')
       .then(([user]) => user);
   },
@@ -36,18 +36,18 @@ const  userService = {
   },
   getAllUsers(db) {
     return db
-      .from('fitpad_users').select('*');
+      .from('users').select('*');
   },
   getById(db, id){
     return db 
-      .from('fitpad_users')
+      .from('users')
       .select('*')
       .where({id})
       .first();
   },
   deleteUser(db, id) {
     return db
-      .from('fitpad_users')
+      .from('users')
       .select("*")
       .where({id})
       .delete()
@@ -63,7 +63,7 @@ const  userService = {
   },
   updateUser(db,id,newUserFields) {
     return db
-      .from('fitpad_users')
+      .from('users')
       .where({id})
       .update(newUserFields);
   }

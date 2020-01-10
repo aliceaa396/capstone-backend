@@ -1,4 +1,4 @@
 TRUNCATE 
-  fitpad_users,
+  users,
   workouts
   RESTART IDENTITY CASCADE;

@@ -23,17 +23,17 @@ fitpadRouter
       .catch(next);
   })
   .post(jsonBodyParser,(req,res,next) => {
-    const {exercise_name,workout_set,workout_rep, workout_weight,notes}=req.body
-    const newWorkout = {exercise_name,workout_set,workout_rep, workout_weight,notes}
+    const {exercise_name,workout_set,workout_rep, workout_weight,user_id,notes}=req.body
+    console.log(user_id)
+    const newWorkout = {exercise_name,workout_set,workout_rep, workout_weight,user_id,notes}
 
     FitpadServices.insertWorkout(
       req.app.get('db'),
       newWorkout
     )
     .then(workout => {
-      res
+      return res
         .status(201)
-        .location(`/workouts/${workouts.id}`)
         .json(serializeWorkout(workout))
     })
     .catch(next)
