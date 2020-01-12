@@ -17,6 +17,7 @@ const FitpadServices = {
     return db
       .select('*')
       .from('workouts')
+      .where({user_id})
   },
   getById(db, id) {
     return db
@@ -29,7 +30,7 @@ const FitpadServices = {
     return db('workouts')
       .where({id})
       .delete()
-  }
+  },
 }
 
 module.exports = FitpadServices;
