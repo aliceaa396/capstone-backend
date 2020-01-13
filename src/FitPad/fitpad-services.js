@@ -18,11 +18,11 @@ const FitpadServices = {
       .select('*')
       .from('workouts')
   },
-  getAllWorkoutsByUserId(db,user_id) {
+  getAllWorkoutsByUserId(db, user_id) {
     return db
-      .from('workouts')
       .select('*')
-      .where({user_id})
+      .from('workouts')
+      .where('user_id', user_id)
   },
   getById(db, id) {
     return db

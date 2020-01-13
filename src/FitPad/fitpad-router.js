@@ -2,6 +2,7 @@ const express = require ('express');
 const fitpadRouter = express.Router()
 const jsonBodyParser = express.json()
 const FitpadServices = require('./fitpad-services');
+const requireAuth = require('../Middleware/jwt-auth');
 
 
 const serializeWorkout = workout => ({
@@ -10,14 +11,16 @@ const serializeWorkout = workout => ({
   workout_set: workout.workout_set,
   workout_rep: workout.workout_rep,
   workout_weight: workout.workout_weight,
+  user_id: workout.user_id,
   notes: workout.notes
 })
 
 fitpadRouter
-  .route('/')        
+  .route('/')
+  .all(requireAuth)          
   .get((req, res, next) => {
-    
-    FitpadServices.getAllWorkoutsByUserId(req.app.get('db'), req.user_id)
+ 
+    FitpadServices.getAllWorkoutsByUserId(req.app.get('db'), req.users.id)
       .then(workouts => {
         res.json(workouts.map(serializeWorkout))
         
