@@ -14,12 +14,12 @@ const serializeWorkout = workout => ({
 })
 
 fitpadRouter
-  .route('/')
+  .route('/')        
   .get((req, res, next) => {
-    console.log(req.user_id )
-    FitpadServices.getAllWorkouts(req.app.get('db'), 1)
-      .then(response => {
-        res.json(response.map(serializeWorkout))
+    
+    FitpadServices.getAllWorkoutsByUserId(req.app.get('db'), req.user_id)
+      .then(workouts => {
+        res.json(workouts.map(serializeWorkout))
         
       })
       .catch(next);
@@ -27,7 +27,7 @@ fitpadRouter
   
   .post(jsonBodyParser,(req,res,next) => {
     const {exercise_name,workout_set,workout_rep, workout_weight,user_id,notes}=req.body
-    console.log(user_id)
+    
     const newWorkout = {exercise_name,workout_set,workout_rep, workout_weight,user_id,notes}
 
     FitpadServices.insertWorkout(
