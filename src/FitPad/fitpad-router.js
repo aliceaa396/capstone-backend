@@ -19,8 +19,8 @@ fitpadRouter
   .route('/')
   .all(requireAuth)          
   .get((req, res, next) => {
- 
-    FitpadServices.getAllWorkoutsByUserId(req.app.get('db'), req.user.id)
+    // req.params.user_id req.user.id ??getAllWorkoutsByUserId
+    FitpadServices.getAllWorkouts(req.app.get('db') )
       .then(workouts => {
         res.json(workouts.map(serializeWorkout))
         
