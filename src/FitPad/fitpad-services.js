@@ -36,17 +36,6 @@ const FitpadServices = {
       .where({id})
       .delete()
   },
-  // serializeWorkouts(workouts) {
-  //   return {
-  //     id: workouts.id,
-  //     exercise_name: xss(workouts.exercise_name),
-  //     workout_set: xss(workouts.workout_set),
-  //     workout_rep: xss(workouts.workout_rep),
-  //     workout_weight: xss(workouts.workout_weight),
-  //     notes: xss(workouts.notes),
-  //     date_added: xss(workouts.date_created)
-  //   }
-  // }
 }
 
 module.exports = FitpadServices;

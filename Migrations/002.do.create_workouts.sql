@@ -8,5 +8,4 @@ CREATE TABLE workouts
   workout_weight INTEGER NOT NULL,
   notes TEXT,
   date_created TIMESTAMP DEFAULT now() NOT NULL
-
-)
+);
