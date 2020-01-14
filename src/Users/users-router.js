@@ -3,7 +3,7 @@ const usersRouter = express.Router();
 const jsonBodyParser = express.json();
 const UsersService = require('./user-service');
 const path = require('path');
-
+const jwt = require('../Middleware/jwt-auth')
 
 usersRouter
   .route('/')
@@ -56,6 +56,15 @@ usersRouter
       })
       .catch(next);
   });
+
+  usersRouter
+    .route('/home')
+    .all(jwt)
+    .get((req,res) =>{
+      return res.json({full_name: req.user.full_name})
+    })
+
+
   usersRouter
     .route('/:user_id')
     .all((req, res, next) => {
