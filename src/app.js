@@ -5,9 +5,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const app = express();
-const usersRouter = require('./Users/users-router');
-const fitpadRouter = require('./FitPad/fitpad-router');
-const authRouter = require('./Auth/auth-router');
+const usersRouter = require('./users/users-router');
+const fitpadRouter = require('./fitpad/fitpad-router');
+const authRouter = require('./auth/auth-router');
 
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'

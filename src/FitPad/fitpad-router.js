@@ -1,8 +1,8 @@
-const express = require ('express');
+const express = require ('./node_modules/express');
 const fitpadRouter = express.Router()
 const jsonBodyParser = express.json()
 const FitpadServices = require('./fitpad-services');
-const requireAuth = require('../Middleware/jwt-auth');
+const requireAuth = require('../middleware/jwt-auth');
 
 
 const serializeWorkout = workout => ({
