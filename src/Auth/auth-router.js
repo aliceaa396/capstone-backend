@@ -16,7 +16,6 @@ authRouter.post('/login', jsonBodyParser, (req,res,next) => {
    }
    AuthService.getUserWithUserEmail(req.app.get('db'), loginUser.user_email)
     .then(dbUser => {
-      console.log(dbUser);
       if (!dbUser){
         return res.status(400).json({
           error:'Incorrect user email or password'

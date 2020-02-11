@@ -13,6 +13,9 @@
     "migrate:test": "env NODE_ENV=TEST npm run migrate"
   },
   "keywords": [],
+  "engines": {
+    "node": "12.12.0"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {

@@ -29,7 +29,7 @@ usersRouter
     if (passwordError){
       return res.status(400).json({error: passwordError});
     }
-    // console.log(req.app.get('db'))
+    
     UsersService.hasUserWithUserName(req.app.get('db'),user_name)
       .then(hasUserWithUserName => {
         if (hasUserWithUserName)
@@ -44,7 +44,6 @@ usersRouter
               password: hashedPassword,
               date_created: 'now()'
             };
-            console.log('part two here i am')
             return UsersService.insertUser(req.app.get('db'),newUser)
               .then (user => {
                 res
