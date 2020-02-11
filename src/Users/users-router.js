@@ -1,4 +1,4 @@
-const express = require('./node_modules/express');
+const express = require('express');
 const usersRouter = express.Router();
 const jsonBodyParser = express.json();
 const UsersService = require('./user-service');

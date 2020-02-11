@@ -1,4 +1,4 @@
-const express = require ('./node_modules/express');
+const express = require ('express');
 const fitpadRouter = express.Router()
 const jsonBodyParser = express.json()
 const FitpadServices = require('./fitpad-services');
