@@ -11,7 +11,8 @@ const serializeWorkout = workout => ({
   workout_set: workout.workout_set,
   workout_rep: workout.workout_rep,
   workout_weight: workout.workout_weight,
-  notes: workout.notes
+  notes: workout.notes,
+  date_created: workout.date_created
 })
 
 fitpadRouter
