@@ -18,11 +18,11 @@ usersRouter
   })
   .post(jsonBodyParser, (req, res, next)=> {
     const {full_name,user_name,user_email,password} = req.body;
-    const newUser = {full_name,user_name,user_email,password}
+    const newUser = {full_name, user_name, user_email, password}
     for (const[key, value] of Object.entries(newUser)) {
       if(!value) {
         return res.status(400).json({
-          error: `Missing '${field}' in request body`
+          error: `Missing '${key}' in request body`
         });
       }
     }
