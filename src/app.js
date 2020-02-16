@@ -1,13 +1,15 @@
 require('dotenv').config()
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors');
 const helmet = require('helmet');
+const cors = require('cors');
 const { NODE_ENV } = require('./config');
-const app = express();
-const usersRouter = require('./users/users-router');
-const fitpadRouter = require('./fitpad/fitpad-router');
+
 const authRouter = require('./auth/auth-router');
+const fitpadRouter = require('./fitpad/fitpad-router');
+const usersRouter = require('./users/users-router');
+
+const app = express();
 
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
