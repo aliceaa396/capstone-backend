@@ -6,7 +6,7 @@ const cors = require('cors');
 const { NODE_ENV } = require('./config');
 
 const authRouter = require('./Auth/auth-router');
-const fitpadRouter = require('./Fitpad/fitpad-router');
+const fitpadRouter = require('./FitPad/fitpad-router');
 const usersRouter = require('./Users/users-router');
 
 const app = express();
