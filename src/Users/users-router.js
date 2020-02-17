@@ -4,7 +4,6 @@ const path = require('path');
 const jsonBodyParser = express.json();
 const usersRouter = express.Router();
 const UsersService = require('./user-service');
-
 const jwt = require('../Middleware/jwt-auth')
 
 usersRouter
