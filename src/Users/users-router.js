@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require('./node_modules/express');
 const path = require('path');
 
 const jsonBodyParser = express.json();
 const usersRouter = express.Router();
 const UsersService = require('./user-service');
 
-const jwt = require('../middleware/jwt-auth')
+const jwt = require('../Middleware/jwt-auth')
 
 usersRouter
   .route('/')
