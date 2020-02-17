@@ -31,6 +31,6 @@ app.use(function errorHandler(error, req, res, next) {
     response = { message: error.message, error }
   }
   res.status(500).json(response)
-})
+});
 
 module.exports = app;
