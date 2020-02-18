@@ -6,5 +6,5 @@ module.exports = {
   migrationDirectory: "migrations",
   driver: "pg",
   connectionString: process.env.DATABASE_URL,
-  ssl: true
+  "ssl": !!process.env.SSL,
 };
