@@ -22,6 +22,7 @@ Run the tests `npm test`
 Base URL: https://localhost8000/api
 
 HTTP Method | Path | Purpose
+--- | --- | ---
 GET | /users/home | gets and displays user logged data
 POST | /auth/login | posts login credentials
 GET | /fitpadData | gets all logged exercises for that user
