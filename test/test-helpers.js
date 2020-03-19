@@ -82,9 +82,16 @@ function seedUsers(db, users) {
     );
 }
 
+function makeTableFixtures() {
+  const testUsers = makeUsersArray();
+  const testWorkouts = makeWorkoutsArray();
+  return {testUsers, testWorkouts}
+}
+
 module.exports = {
   makeUsersArray,
   makeWorkoutsArray,
   cleanTables,
+  makeTableFixtures,
   seedUsers
 }
